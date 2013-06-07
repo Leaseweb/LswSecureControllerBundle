@@ -57,6 +57,16 @@ public function registerBundles()
 
 Provide '@Secure' annotation to secure actions in controllers by specifying required roles.
 
+## Credits
+
+This would not have been possible without Matthias Nobacks excellent posts:
+
+Symfony2 & Doctrine Common: creating powerful annotations
+http://php-and-symfony.matthiasnoback.nl/2011/12/symfony2-doctrine-common-creating-powerful-annotations/
+
+Prevent Controller Execution with Annotations and Return a Custom Response
+http://php-and-symfony.matthiasnoback.nl/2012/12/prevent-controller-execution-with-annotations-and-return-a-custom-response/
+
 ## License
 
 This bundle is under the MIT license.
