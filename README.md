@@ -5,7 +5,7 @@ Provide '@Secure' annotation to secure actions in controllers by specifying requ
 
 ## Requirements
 
-* PHP 5.3 with curl support
+* PHP 5.3
 * Symfony 2.3
 
 ## Installation
