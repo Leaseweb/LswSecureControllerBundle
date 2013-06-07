@@ -1,0 +1,9 @@
+parameters:
+    secure_controller.controller_listener.class: Lsw\SecureControllerBundle\Security\ControllerListener
+
+services:
+    secure_controller.controller_listener:
+        class: %secure_controller.controller_listener.class%
+        arguments: [@annotation_reader,@security.context]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
