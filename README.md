@@ -1,7 +1,10 @@
 LswSecureControllerBundle
 ==================
 
-Provide '@Secure' annotation to secure actions in controllers by specifying required roles.
+Provide '@Secure' annotation to secure actions in controllers by specifying required roles. 
+
+NB: This bundle was created because the [JMSSecurityExtraBundle](https://github.com/schmittjoh/JMSSecurityExtraBundle) is no 
+longer provided in Symfony 2.3 (due to a license incompatibility) and this was the only feature we needed.
 
 ## Requirements
 
@@ -55,7 +58,49 @@ public function registerBundles()
 
 ## Usage
 
-Provide '@Secure' annotation to secure actions in controllers by specifying required roles.
+As an example we show how to use the '@Secure' annotation in the AcmeDemoBundle to secure the "hello world"
+page requiring the role "ROLE_TEST" to execute.
+
+In ```src/Acme/DemoBundle/Controller/SecuredController.php``` you should add the following line on 
+top, but under the namespace definition:
+
+``` php
+use Lsw\SecureControllerBundle\Annotation\Secure;
+```
+
+To require the "ROLE_TEST" for "helloAction" in the "SecuredController" you should add the line
+```@Secure(roles="ROLE_TEST")``` to the DocBlock of the "helloAction" like this: 
+Security
+``` php
+    /**
+     * @Secure(roles="ROLE_TEST")
+     * @Route("/hello", defaults={"name"="World"}),
+     * @Route("/hello/{name}", name="_demo_secured_hello")
+     * @Template()
+     */
+    public function helloAction($name)
+    {
+        return array('name' => $name);
+    }
+```
+
+If the user does not have the role the following error should appear when accessing the action:
+
+```
+Current user is not granted required role "ROLE_TEST".
+403 Forbidden - AccessDeniedHttpException
+1 linked Exception:
+```
+
+If you put the "@Secure" annotation on an action that is not behind a firewall you get this error:
+
+```
+@Secure(...) annotation found without firewall on "helloAction" in 
+".../src/Acme/DemoBundle/Controller/DemoController.php"
+500 Internal Server Error - AuthenticationCredentialsNotFoundException
+```
+
+Note that you can configure the firewall in ```app/config/security.yml```.
 
 ## Credits
 
