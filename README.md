@@ -70,7 +70,7 @@ use Lsw\SecureControllerBundle\Annotation\Secure;
 
 To require the "ROLE_TEST" for "helloAction" in the "SecuredController" you should add the line
 ```@Secure(roles="ROLE_TEST")``` to the DocBlock of the "helloAction" like this: 
-Security
+
 ``` php
     /**
      * @Secure(roles="ROLE_TEST")
