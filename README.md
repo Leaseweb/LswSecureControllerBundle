@@ -84,6 +84,18 @@ To require the "ROLE_TEST" for "helloAction" in the "SecuredController" you shou
     }
 ```
 
+Or to the DocBlock of the controller like this: 
+
+``` php
+    /**
+     * @Security\Secure(roles="ROLE_USER_EDIT,ROLE_USER_DELETE")
+     */
+    class UserController extends Controller
+    {
+     ...
+    }
+```
+
 If the user does not have the role the following error should appear when accessing the action:
 
 ```
