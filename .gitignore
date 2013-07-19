@@ -1,0 +1,21 @@
+# Eclipse
+/.settings/
+/.buildpath
+/.project
+/cache.properties
+
+# NetBeans
+/nbproject/
+
+# PhpStorm
+/.idea/
+
+# Symfony2
+/app/bootstrap.php.cache
+/app/check.php
+/app/SymfonyRequirements.php
+/bin/
+/build/
+/vendor/
+/composer.lock
+/composer.phar
