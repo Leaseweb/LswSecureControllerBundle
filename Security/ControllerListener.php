@@ -26,13 +26,16 @@ class ControllerListener
         
         list($object, $method) = $controller;
         
-        // the controller could be a proxy, e.g. when using the JMSSecuriyExtraBundle or JMSDiExtraBundle
+        // the controller could be a proxy, e.g. when using the JMSSecurityExtraBundle or JMSDiExtraBundle
         $className = ClassUtils::getRealClass($object);
         
         $reflectionClass = new \ReflectionClass($className);
         $reflectionMethod = $reflectionClass->getMethod($method);
-        
-        $allAnnotations = $this->annotationReader->getMethodAnnotations($reflectionMethod);
+
+        $classAnnotations = $this->annotationReader->getClassAnnotations($reflectionClass);
+        $methodsAnnotations = $this->annotationReader->getMethodAnnotations($reflectionMethod);
+
+        $allAnnotations = array_merge($classAnnotations,$methodsAnnotations);
         
         $secureAnnotations = array_filter($allAnnotations, function($annotation) {
             return $annotation instanceof Secure;
