@@ -88,11 +88,11 @@ Or to the DocBlock of the controller like this:
 
 ``` php
     /**
-     * @Security\Secure(roles="ROLE_USER_EDIT,ROLE_USER_DELETE")
+     * @Secure(roles="ROLE_TEST")
      */
-    class UserController extends Controller
+    class AdminController extends Controller
     {
-     ...
+      ...
     }
 ```
 
