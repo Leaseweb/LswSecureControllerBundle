@@ -6,9 +6,11 @@ Provide '@Secure' annotation to secure actions in controllers by specifying requ
 NB: This bundle was created because the [JMSSecurityExtraBundle](https://github.com/schmittjoh/JMSSecurityExtraBundle) is no 
 longer provided in Symfony 2.3 (due to a license incompatibility) and this was the only feature we needed.
 
+[![Build Status](https://travis-ci.org/LeaseWeb/LswSecureControllerBundle.png?branch=master)](https://travis-ci.org/GregoireHebert/LswSecureControllerBundle)
+
 ## Requirements
 
-* PHP 5.4
+* PHP 5.3
 * Symfony 2.3
 
 ## Installation
@@ -120,6 +122,11 @@ This would not have been possible without [Matthias Noback](https://github.com/m
 
  - [Symfony2 & Doctrine Common: creating powerful annotations](http://php-and-symfony.matthiasnoback.nl/2011/12/symfony2-doctrine-common-creating-powerful-annotations/)
  - [Prevent Controller Execution with Annotations and Return a Custom Response](http://php-and-symfony.matthiasnoback.nl/2012/12/prevent-controller-execution-with-annotations-and-return-a-custom-response/)
+
+## Contributors
+
+ - [GregoireHebert](https://github.com/GregoireHebert)
+ - [mevdschee](https://github.com/mevdschee)
 
 ## License
 
