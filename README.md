@@ -8,7 +8,7 @@ longer provided in Symfony 2.3 (due to a license incompatibility) and this was t
 
 ## Requirements
 
-* PHP 5.3
+* PHP 5.4
 * Symfony 2.3
 
 ## Installation
