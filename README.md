@@ -6,9 +6,11 @@ Provide '@Secure' annotation to secure actions in controllers by specifying requ
 NB: This bundle was created because the [JMSSecurityExtraBundle](https://github.com/schmittjoh/JMSSecurityExtraBundle) is no 
 longer provided in Symfony 2.3 (due to a license incompatibility) and this was the only feature we needed.
 
+[![Build Status](https://travis-ci.org/GregoireHebert/LswSecureControllerBundle.png?branch=master)](https://travis-ci.org/GregoireHebert/LswSecureControllerBundle)
+
 ## Requirements
 
-* PHP 5.3
+* PHP 5.4
 * Symfony 2.3
 
 ## Installation
@@ -81,6 +83,18 @@ To require the "ROLE_TEST" for "helloAction" in the "SecuredController" you shou
     public function helloAction($name)
     {
         return array('name' => $name);
+    }
+```
+
+Or to the DocBlock of the controller like this: 
+
+``` php
+    /**
+     * @Secure(roles="ROLE_TEST")
+     */
+    class AdminController extends Controller
+    {
+      ...
     }
 ```
 
