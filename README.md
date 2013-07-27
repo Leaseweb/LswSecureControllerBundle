@@ -6,7 +6,7 @@ Provide '@Secure' annotation to secure actions in controllers by specifying requ
 NB: This bundle was created because the [JMSSecurityExtraBundle](https://github.com/schmittjoh/JMSSecurityExtraBundle) is no 
 longer provided in Symfony 2.3 (due to a license incompatibility) and this was the only feature we needed.
 
-[![Build Status](https://travis-ci.org/LeaseWeb/LswSecureControllerBundle.png?branch=master)](https://travis-ci.org/GregoireHebert/LswSecureControllerBundle)
+[![Build Status](https://travis-ci.org/LeaseWeb/LswSecureControllerBundle.png?branch=master)](https://travis-ci.org/LeaseWeb/LswSecureControllerBundle)
 
 ## Requirements
 
