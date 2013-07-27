@@ -29,17 +29,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingAnnotationFromClassAndRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotation,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotation,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -56,17 +56,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingAnnotationFromClassAndRoleGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotation,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotation,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -81,18 +81,18 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingMultiLinesAnnotationsFromClassAndLastRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotationsMultiLines,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotationsMultiLines,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"]),
-                    new Secure(['roles'=>"ROLE_USER_ADD"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT")),
+                    new Secure(array('roles'=>"ROLE_USER_ADD"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -109,18 +109,18 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingMultiLinesAnnotationsFromClassAndFirstRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotationsMultiLines,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotationsMultiLines,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"]),
-                    new Secure(['roles'=>"ROLE_USER_ADD"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT")),
+                    new Secure(array('roles'=>"ROLE_USER_ADD"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -137,18 +137,18 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingMultiLinesAnnotationsFromClassAndAllRolesGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotationsMultiLines,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotationsMultiLines,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"]),
-                    new Secure(['roles'=>"ROLE_USER_ADD"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT")),
+                    new Secure(array('roles'=>"ROLE_USER_ADD"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -163,17 +163,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingComaSeparatedAnnotationsFromClassAndLastRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotationsComaSeparated,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotationsComaSeparated,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT,ROLE_USER_ADD"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT,ROLE_USER_ADD"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -190,17 +190,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingComaSeparatedAnnotationsFromClassAndFirstRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotationsComaSeparated,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotationsComaSeparated,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT,ROLE_USER_ADD"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT,ROLE_USER_ADD"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -217,17 +217,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingComaSeparatedAnnotationsFromClassAndAllRolesGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForClassAnnotationsComaSeparated,'stubMethod']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForClassAnnotationsComaSeparated,'stubMethod')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT,ROLE_USER_ADD"])
-                ]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT,ROLE_USER_ADD"))
+                )));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array()));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -242,17 +242,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingAnnotationFromMethodsAndRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'UniqueRole']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'UniqueRole')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->atLeastOnce())->method('getToken')->will($this->returnValue(true));
@@ -269,17 +269,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingAnnotationFromMethodsAndRoleGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'UniqueRole']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'UniqueRole')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_EDIT"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_EDIT"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->atLeastOnce())->method('getToken')->will($this->returnValue(true));
@@ -294,18 +294,18 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingMultiLinesAnnotationsFromMethodsAndAllRolesGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'MultiRolesMultiLines']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'MultiRolesMultiLines')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_ADD"]),
-                    new Secure(['roles'=>"ROLE_USER_REMOVE"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_ADD")),
+                    new Secure(array('roles'=>"ROLE_USER_REMOVE"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -320,18 +320,18 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingMultiLinesAnnotationsFromMethodsAndLastRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'MultiRolesMultiLines']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'MultiRolesMultiLines')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_ADD"]),
-                    new Secure(['roles'=>"ROLE_USER_REMOVE"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_ADD")),
+                    new Secure(array('roles'=>"ROLE_USER_REMOVE"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -348,18 +348,18 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingMultiLinesAnnotationsFromMethodsAndFirstRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'MultiRolesMultiLines']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'MultiRolesMultiLines')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_ADD"]),
-                    new Secure(['roles'=>"ROLE_USER_REMOVE"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_ADD")),
+                    new Secure(array('roles'=>"ROLE_USER_REMOVE"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -376,17 +376,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingComaSeparatedAnnotationsFromMethodsAndAllRolesGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'MultiRolesComaSeparated']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'MultiRolesComaSeparated')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_DUPLICATE,ROLE_USER_ACCESS"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_DUPLICATE,ROLE_USER_ACCESS"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -401,17 +401,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingComaSeparatedAnnotationsFromMethodsAndLastRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'MultiRolesComaSeparated']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'MultiRolesComaSeparated')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_DUPLICATE,ROLE_USER_ACCESS"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_DUPLICATE,ROLE_USER_ACCESS"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -428,17 +428,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingComaSeparatedAnnotationsFromMethodsAndFirstRoleNotGranted()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'MultiRolesComaSeparated']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'MultiRolesComaSeparated')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_DUPLICATE,ROLE_USER_ACCESS"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_DUPLICATE,ROLE_USER_ACCESS"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(true));
@@ -455,17 +455,17 @@ class ControllerListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testGettingAnnotationWithoutFirewall()
     {
-        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', ['getController']);
+        $eventBuilder = $this->getmockBuilder('Symfony\Component\HttpKernel\Event\FilterControllerEvent', array('getController'));
         $eventBuilder->disableOriginalConstructor();
 
         $event = $eventBuilder->getMock();
-        $event->expects($this->any())->method('getController')->will($this->returnValue([$this->classForMethodsAnnotations,'RoleWithoutFireWall']));
+        $event->expects($this->any())->method('getController')->will($this->returnValue(array($this->classForMethodsAnnotations,'RoleWithoutFireWall')));
 
         $reader = $this->getMock('Doctrine\Common\Annotations\AnnotationReader');
-        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue([]));
-        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue([
-                    new Secure(['roles'=>"ROLE_USER_LOGIN"])
-                ]));
+        $reader->expects($this->atLeastOnce())->method('getClassAnnotations')->will($this->returnValue(array()));
+        $reader->expects($this->atLeastOnce())->method('getMethodAnnotations')->will($this->returnValue(array(
+                    new Secure(array('roles'=>"ROLE_USER_LOGIN"))
+                )));
 
         $this->securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         $this->securityContext->expects($this->any())->method('getToken')->will($this->returnValue(false));
