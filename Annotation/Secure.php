@@ -1,13 +1,19 @@
 <?php
 namespace Lsw\SecureControllerBundle\Annotation;
 
-use Doctrine\Common\Annotations\Annotation;
-
 /**
  * @Annotation
  */
-class Secure extends Annotation
+class Secure
 {
     public $roles = "";
-     
+
+    public function __construct(array $values)
+    {
+        if (isset($values['value'])) {
+            $values['roles'] = $values['value'];
+        }
+
+        $this->roles = $values['roles'];
+    }
 }
