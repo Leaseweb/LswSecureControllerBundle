@@ -48,19 +48,20 @@ class ControllerListener
                   '@Secure(...) annotation found without firewall on "'.$method.'" in "'.$filename.'"'
               );
             }
-            $roles = explode(',',$secureAnnotation->roles);
-            foreach ($roles as $role)
-            {   
-                $role = trim($role);
-                       
-                if (!$role) continue;
-                if (!$this->securityContext->isGranted($role)) {
+
+            if (trim($secureAnnotation->roles) == '')
+                return;
+
+            $roles = explode(',', $secureAnnotation->roles);
+            $roles = array_map('trim', $roles);
+
+            if (is_array($roles)) {
+                if (!$this->securityContext->isGranted($roles)) {
                     throw new AccessDeniedException(
-                        'Current user is not granted required role "'.$role.'".'
+                        'Current user is not granted with any of the required roles: ' . $secureAnnotation->roles
                     );
                 }
             }
-            
         }
     }
     
