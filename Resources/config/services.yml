@@ -4,6 +4,6 @@ parameters:
 services:
     secure_controller.controller_listener:
         class: %secure_controller.controller_listener.class%
-        arguments: [@annotation_reader,@security.context]
+        arguments: [ "@annotation_reader", "@security.context" ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
