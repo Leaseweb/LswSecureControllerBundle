@@ -2,8 +2,9 @@
 namespace Lsw\SecureControllerBundle\Security;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Symfony\Component\Security\Core\Util\ClassUtils;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Acl\Util\ClassUtils;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 use Doctrine\Common\Annotations\Reader;
@@ -11,15 +12,37 @@ use Lsw\SecureControllerBundle\Annotation\Secure;
 
 class ControllerListener
 {
+    /**
+     * @var Reader
+     */
     private $annotationReader;
-    private $securityContext;
-    
-    public function __construct(Reader $annotationReader, SecurityContextInterface $securityContext)
-    {
-      $this->annotationReader = $annotationReader;
-      $this->securityContext = $securityContext;
+
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
+     * ControllerListener constructor.
+     * @param Reader $annotationReader
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface $tokenStorage
+     */
+    public function __construct(
+        Reader $annotationReader,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage
+    ) {
+        $this->annotationReader = $annotationReader;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
     }
-  
+
     public function onKernelController(FilterControllerEvent $event)
     {
         $controller = $event->getController();
@@ -42,7 +65,7 @@ class ControllerListener
         });
         
         foreach ($secureAnnotations as $secureAnnotation) {
-            if (!$this->securityContext->getToken()) {
+            if (!$this->tokenStorage->getToken()) {
               $filename = $reflectionClass->getFileName();
               throw new AuthenticationCredentialsNotFoundException(
                   '@Secure(...) annotation found without firewall on "'.$method.'" in "'.$filename.'"'
@@ -54,7 +77,7 @@ class ControllerListener
                 $role = trim($role);
                        
                 if (!$role) continue;
-                if (!$this->securityContext->isGranted($role)) {
+                if (!$this->authorizationChecker->isGranted($role)) {
                     throw new AccessDeniedException(
                         'Current user is not granted required role "'.$role.'".'
                     );
