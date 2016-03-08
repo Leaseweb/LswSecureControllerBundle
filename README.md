@@ -11,7 +11,7 @@ longer provided in Symfony 2.3 (due to a license incompatibility) and this was t
 ## Requirements
 
 * PHP 5.3
-* Symfony 2.3
+* Symfony 2.8
 
 ## Installation
 
