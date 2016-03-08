@@ -1,4 +1,5 @@
 <?php
+
 namespace Lsw\SecureControllerBundle\Annotation;
 
 /**
@@ -6,7 +7,7 @@ namespace Lsw\SecureControllerBundle\Annotation;
  */
 class Secure
 {
-    public $roles = "";
+    public $roles = '';
 
     public function __construct(array $values)
     {
