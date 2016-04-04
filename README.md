@@ -1,9 +1,9 @@
 LswSecureControllerBundle
 ==================
 
-NB: You may want to use the [@Security annotation](http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html) provided by the SensioFrameworkExtraBundle (Symfony 2.4+ feature)
-
 Provide '@Secure' annotation to secure actions in controllers by specifying required roles. 
+
+NB: Instead of this bundle you may want to use the [@Security annotation](http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html) provided by the SensioFrameworkExtraBundle (Symfony 2.4+ feature)
 
 NB: This bundle was created because the [JMSSecurityExtraBundle](https://github.com/schmittjoh/JMSSecurityExtraBundle) is no 
 longer provided in Symfony 2.3 (due to a license incompatibility) and this was the only feature we needed.
